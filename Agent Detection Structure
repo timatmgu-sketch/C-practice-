@@ -1,0 +1,64 @@
+# Agent Management System
+
+How it works
+init_agents: Initializes the agent list with predefined data.
+
+print_active_agents: Iterates through the list and prints information for agents where status == 1.
+
+
+A simple C-based program to manage and filter a list of agents using structures.
+
+## Features
+- **Data Structuring**: Uses a `struct` to organize agent data (codename, status, and name).
+- **Modularity**: Logic is separated into initialization and display functions.
+- **Filtering**: Automatically filters and displays only agents with an active status.
+
+## How to Compile
+You can compile this program using `gcc`:
+
+```bash
+gcc main.c -o agent_system
+./agent_system
+
+#include <stdio.h> 
+#include <string.h>
+
+struct Agent {
+    int codename;
+    int status;
+    char name[20];
+};
+    
+void print_active_agents(struct Agent agency[],int size){
+    
+     for(int i = 0; i < size;i++){
+        if(agency[i].status == 1){
+            printf("All agents with status == 1: %d\n",agency[i].codename);
+            printf("Name of agents that have status == 1: %s\n",agency[i].name);
+        }
+    } 
+
+}
+
+void init_agents(struct Agent agency[]) {
+    agency[0].codename = 707;
+    agency[1].codename = 550;
+    agency[2].codename  = 889; 
+
+    agency[0].status = 1;
+    agency[1].status = 1;
+    agency[2].status = 0; 
+
+    strcpy(agency[0].name,"Smith");
+    strcpy(agency[1].name,"Bob");
+    strcpy(agency[2].name,"Will");
+}
+
+int main() {
+    struct Agent agency[3];
+    init_agents(agency);
+    print_active_agents(agency,3);
+
+
+    return 0;
+}
